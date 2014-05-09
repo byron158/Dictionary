@@ -6,12 +6,12 @@
  * @version 9/11/13
  */
 import java.util.Random;
-public class Dice implements Comparable
+public class Dice implements Comparable<Dice>
 {
-    private static int mySides;
-    private static Random roller;
-    private static int previousRoll;
-    private static int rollCount;
+    private int mySides;
+    private Random roller;
+    private int previousRoll;
+    // private int rollCount;
 
     //two constructors (initializes private instance variables)
     Dice()
@@ -33,12 +33,12 @@ public class Dice implements Comparable
         setSides(sides);
         roller = new Random(seed);
     }
-    public static void  resetRoller()
+    public void  resetRoller()
     {
         roller = new Random();
     }
     //mutator/modifier
-    public static void setSides(int sides)
+    public void setSides(int sides)
     {
          if (sides >= 1)
             mySides = sides;
@@ -46,23 +46,23 @@ public class Dice implements Comparable
             mySides = 6;
     }
     //acessor
-    public static int getSides()
+    public int getSides()
     {
         return mySides;
     }
-    public static int getPreviousRoll()
+    public int getPreviousRoll()
     {
         return previousRoll;
     }
     //act or action method
-    public static int getNextRoll()
+    public int getNextRoll()
     {
         previousRoll = roller.nextInt(mySides) + 1;
         return previousRoll;
         
     }
     
-    public int compareTo(Object ob)//object is when you define a class
+    public int compareTo(Dice ob)//object is when you define a class
     {
         Dice otherDice = (Dice)ob;
         return mySides-otherDice.getSides();
